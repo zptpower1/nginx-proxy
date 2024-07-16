@@ -1,7 +1,8 @@
 version: "3"
 
 services:
-# 当前页的配置基于 qnap ts551 v5.x 版本系统的容器管理配置
+  # 当前页的配置基于 qnap ts551 v5.x 版本系统的容器管理配置
+  # 似乎更适合容器内网做服务发现使用，virtual_host 主要在容器内可用，并不是用于容器外的映射
   nginx-proxy:
     image: registry.dockermirror.com/nginxproxy/nginx-proxy:latest
     container_name: nginx-proxy
@@ -13,3 +14,8 @@ services:
 
     # if you want to proxy based on host ports, you'll want to use the host network
     # network_mode: "host"
+  # 测试用容器  
+  whoami:
+    image: registry.dockermirror.com/jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=whoami.example
