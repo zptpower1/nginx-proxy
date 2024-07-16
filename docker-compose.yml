@@ -1,18 +1,15 @@
-version: "2"
+version: "3"
 
 services:
+# 当前页的配置基于 qnap ts551 v5.x 版本系统的容器管理配置
   nginx-proxy:
-    image: nginxproxy/nginx-proxy
+    image: registry.dockermirror.com/nginxproxy/nginx-proxy:latest
     container_name: nginx-proxy
     ports:
-      - "80:80"
+      - "8911:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: unless-stopped
 
     # if you want to proxy based on host ports, you'll want to use the host network
     # network_mode: "host"
-
-  whoami:
-    image: jwilder/whoami
-    environment:
-      - VIRTUAL_HOST=whoami.example
