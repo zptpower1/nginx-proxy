@@ -14,8 +14,14 @@ services:
 
     # if you want to proxy based on host ports, you'll want to use the host network
     # network_mode: "host"
+    network_mode: bridge
+    networks:
+      - docker0
   # 测试用容器  
-  whoami:
-    image: registry.dockermirror.com/jwilder/whoami
-    environment:
-      - VIRTUAL_HOST=whoami.example
+  # whoami:
+  #   image: registry.dockermirror.com/jwilder/whoami
+  #   environment:
+  #     - VIRTUAL_HOST=whoami.example
+  #   network_mode: bridge
+  #   networks:
+  #     - docker0
